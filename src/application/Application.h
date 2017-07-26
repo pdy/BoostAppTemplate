@@ -14,29 +14,29 @@ class Application
 public:
     virtual ~Application() = default;
 
-	int run();
+    int run();
 
     Application() = delete;
-	Application(const Application&) = delete;	
-	Application(Application&&) = delete;
-	Application& operator= (const Application&) = delete;
-	Application& operator= (Application&&) = delete;
+    Application(const Application&) = delete;
+    Application(Application&&) = delete;
+    Application& operator= (const Application&) = delete;
+    Application& operator= (Application&&) = delete;
 
-protected: 
+protected:
     Application(int argc, char *argv[]);
     Application(int argc, char *argv[], const std::string &appDescription);
-   
-    virtual bool init();
-   	virtual int main();
 
-	std::string getAppName() const;
-	
+    virtual bool init();
+    virtual int main();
+
+    std::string getAppName() const;
+
     bool addCmdOption(const std::string &option, const std::string &desc, bool required = true);
-	bool addCmdOptionFlag(const std::string &option, const std::string &desc, bool defaultValue = false);
-    
+    bool addCmdOptionFlag(const std::string &option, const std::string &desc, bool defaultValue = false);
+
     bool getCmdOptionFlag(const std::string &option) const;
-	std::string getCmdOptionValue(const std::string &option) const;	
-    
+    std::string getCmdOptionValue(const std::string &option) const;	
+ 
     inline void showHelpIfNoArguments()
     {
         _showHelpIfNoArguments = true;
@@ -46,25 +46,26 @@ private:
     const int _argc;
     char **_argv;
 
-	void processArguments(int argc, char *argv[]);
-	bool helpRequested() const;
+    void processArguments(int argc, char *argv[]);
+    bool helpRequested() const;
     void configureLogging();	
 	
-	std::unique_ptr<boost::program_options::variables_map> _cmdArguments;
-	std::unique_ptr<boost::program_options::options_description> _cmdDesc;
-	std::string _appName;
-    
+    std::unique_ptr<boost::program_options::variables_map> _cmdArguments;
+    std::unique_ptr<boost::program_options::options_description> _cmdDesc;
+    std::string _appName;
+
     bool _showHelpIfNoArguments = false;
 };
 
 namespace MainApplication{
-	
-	template<class AppClass>
-	int run(int argc, char *argv[])
-	{
+
+    template<class AppClass>
+    int run(int argc, char *argv[])
+    {
         std::unique_ptr<AppClass> app(new AppClass(argc, argv));
-		return app->run();	
-	}
-}
+        return app->run();	
+    }
+
+} // namespace MainApplication
 
 #endif //SEVERALGH_APPLICATION_H_

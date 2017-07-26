@@ -8,9 +8,6 @@
 
 #include <boost/filesystem.hpp>
 
-#include <boost/algorithm/string/case_conv.hpp>
-
-
 namespace options = boost::program_options;
 using DescriptionPtr = boost::shared_ptr<options::option_description>;
 
@@ -41,74 +38,74 @@ std::string getShort(const std::string &option)
 } // namespace
 
 Application::Application(int argc, char *argv[])
-    : _argc(argc),
-      _argv(argv),
-      _cmdArguments(new options::variables_map()),
-	  _cmdDesc(new options::options_description("Options"))
+    :   _argc(argc),
+        _argv(argv),
+        _cmdArguments(new options::variables_map()),
+        _cmdDesc(new options::options_description("Options"))
       
 { 
     _cmdDesc->add_options()("help,h","Print help message"); 
 }
 
 Application::Application(int argc, char *argv[], const std::string &appDesc)
-    : _argc(argc),
-      _argv(argv),
-      _cmdArguments(new options::variables_map()),
-	  _cmdDesc(new options::options_description(appDesc))
+    :   _argc(argc),
+        _argv(argv),
+        _cmdArguments(new options::variables_map()),
+        _cmdDesc(new options::options_description(appDesc))
 {
 	_cmdDesc->add_options()("help,h","Print help message");
 }
 
 std::string Application::getAppName() const
 {
-	return _appName;
+    return _appName;
 }
 
 int Application::run()
 {
-	try
-	{
-		processArguments(_argc, _argv);
-		
-		if(helpRequested())
-		{
-			std::cout << *_cmdDesc << "\n";
-			return 0;
-		}
+    try
+    {
+        processArguments(_argc, _argv);
 
-		options::notify(*_cmdArguments);
+        if(helpRequested())
+        {
+            std::cout << *_cmdDesc << "\n";
+            return 0;
+        }
 
-		if(!init())
-		{
-			std::cout << "initialization failed" << "\n";
-			return -1;
-		}
+        options::notify(*_cmdArguments);
+
+        if(!init())
+        {
+            std::cout << "initialization failed" << "\n";
+            return -1;
+        }
+    }
+    catch(const options::error &e)
+    {
+        std::cerr << "ERROR: " << e.what() << "\n";
+        return -1;
 	}
-	catch(const options::error &e)
-	{
-		std::cerr << "ERROR: " << e.what() << "\n";
-		return -1;
-	}
-	catch(const std::exception &e)
-	{
-		std::cout << "Exception, thrown [" << e.what() << "]\n";
-		return -1;
-	}
+    catch(const std::exception &e)
+    {
+        std::cout << "Exception, thrown [" << e.what() << "]\n";
+        return -1;
+    }
     catch(...)
     {
         std::cerr << "Unknown exception thrown\n";
         return -1;
     }
 	
-	return main();
+    return main();
 }
 
 void Application::processArguments(int argc, char *argv[])
 {	
-	boost::filesystem::path p = argv[0];	
-	_appName = p.stem().string();
+    boost::filesystem::path p = argv[0];	
+    _appName = p.stem().string();
 
-	options::variables_map vm; 
+    options::variables_map vm; 
     options::store(options::command_line_parser(argc, argv).options(* _cmdDesc).run(), vm);
 	    
     _cmdArguments.reset(new options::variables_map(vm));	
@@ -116,9 +113,9 @@ void Application::processArguments(int argc, char *argv[])
 
 bool Application::init()
 {	
-	configureLogging();
+    configureLogging();
 	
-	return true;
+    return true;
 }
 
 void Application::configureLogging()
@@ -132,7 +129,7 @@ bool Application::helpRequested() const
 
 bool Application::getCmdOptionFlag(const std::string &option) const
 {
-	return (*_cmdArguments.get())[option].as<bool>();
+    return (*_cmdArguments.get())[option].as<bool>();
 }
 
 bool Application::addCmdOption(const std::string &option, const std::string &desc, bool required)
@@ -147,20 +144,20 @@ bool Application::addCmdOption(const std::string &option, const std::string &des
 	
     if(unique && required)
     {
-		_cmdDesc->add_options()
+        _cmdDesc->add_options()
             (option.c_str(), options::value<std::string>()->required(), desc.c_str());
     }
 	else if(unique)
     {
-		_cmdDesc->add_options()
+        _cmdDesc->add_options()
             (option.c_str(),options::value<std::string>(),desc.c_str());
     }
-	else
+    else
     {
-		std::cout << "Option " << option << " is already taken\n";
+        std::cout << "Option " << option << " is already taken\n";
     }
 
-	return unique;
+    return unique;
 }
 
 bool Application::addCmdOptionFlag(const std::string &option, const std::string &desc, bool defaultValue)
@@ -173,31 +170,31 @@ bool Application::addCmdOptionFlag(const std::string &option, const std::string 
     
     const bool unique = found == _cmdDesc->options().cend();
 
-	if(unique)
+    if(unique)
     {
-		_cmdDesc->add_options()
+        _cmdDesc->add_options()
             (option.c_str(), options::bool_switch()->default_value(defaultValue), desc.c_str());
     }
-	else
+    else
     {
-		std::cout << "Option " << option << " is already taken\n";
+        std::cout << "Option " << option << " is already taken\n";
     }
 
-	return unique;
+    return unique;
 }
 
 std::string Application::getCmdOptionValue(const std::string &option) const
 {
-	if(_cmdArguments->count(option))
-	{
+    if(_cmdArguments->count(option))
+    {
         return (*_cmdArguments)[option].as<std::string>();
-	}
+    }
 
-	return "";
+    return "";
 }
 
 int Application::main()
 {
-	std::cout << "main(): I should be reimplemented dummy\n";
+    std::cout << "main(): I should be reimplemented dummy\n";
     return 0;
 }
