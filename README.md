@@ -7,7 +7,7 @@ Makefiles are linux only. Tools you need:
 * clang++ with c++14 support
 * Boost C++ installed or compiled
 
-If you'll my script, app is easy to prepare
+If you'll use my script, app is easy to prepare
 
 ````
 $ wget https://raw.githubusercontent.com/severalgh/scripts/master/utils/new_app.sh
