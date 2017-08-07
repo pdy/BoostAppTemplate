@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "Logger.h"
+#include "TrivialLogger.h"
 
 #include <iostream>
 #include <fstream>

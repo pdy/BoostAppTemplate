@@ -1,5 +1,5 @@
 #include "application/Application.h"
-#include "application/Logger.h"
+#include "application/TrivialLogger.h"
 
 class AppTemplate : public Application
 {
