@@ -9,7 +9,7 @@ FLAGS := $(MANUAL_FLAGS)
 
 LD_FLAGS := -L./3rd/boost/lib
 
-BOOST_LINKING := -lboost_system -lboost_filesystem -lboost_program_options
+BOOST_LINKING := -lboost_system -lboost_filesystem -lboost_program_options -lboost_log -lboost_log_setup -lboost_thread
 
 LD_LIBS := -Wl,-Bstatic $(BOOST_LINKING) -Wl,-Bdynamic -pthread
 

@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Logger.h"
 
 #include <iostream>
 #include <fstream>
@@ -77,23 +78,23 @@ int Application::run()
 
         if(!init())
         {
-            std::cout << "initialization failed" << "\n";
+            LOG_ERR_TRIV << "initialization failed";
             return -1;
         }
     }
     catch(const options::error &e)
     {
-        std::cerr << "ERROR: " << e.what() << "\n";
+        LOG_ERR_TRIV << "ERROR: " << e.what();
         return -1;
 	}
     catch(const std::exception &e)
     {
-        std::cout << "Exception, thrown [" << e.what() << "]\n";
+        LOG_ERR_TRIV << "Exception, thrown [" << e.what() << "]";
         return -1;
     }
     catch(...)
     {
-        std::cerr << "Unknown exception thrown\n";
+        LOG_ERR_TRIV << "Unknown exception thrown";
         return -1;
     }
 	
@@ -113,13 +114,17 @@ void Application::processArguments(int argc, char *argv[])
 
 bool Application::init()
 {	
-    configureLogging();
-	
+    if(!configureLogging())
+    {
+        return false;
+    }
+
     return true;
 }
 
-void Application::configureLogging()
+bool Application::configureLogging()
 {
+    return true;
 }
 
 bool Application::helpRequested() const
@@ -154,7 +159,7 @@ bool Application::addCmdOption(const std::string &option, const std::string &des
     }
     else
     {
-        std::cout << "Option " << option << " is already taken\n";
+        LOG_WRN_TRIV << "Option " << option << " is already taken";
     }
 
     return unique;
@@ -177,7 +182,7 @@ bool Application::addCmdOptionFlag(const std::string &option, const std::string 
     }
     else
     {
-        std::cout << "Option " << option << " is already taken\n";
+        LOG_WRN_TRIV << "Option " << option << " is already taken";
     }
 
     return unique;
@@ -195,6 +200,6 @@ std::string Application::getCmdOptionValue(const std::string &option) const
 
 int Application::main()
 {
-    std::cout << "main(): I should be reimplemented dummy\n";
+    LOG_INF_TRIV << "main(): I should be reimplemented dummy";
     return 0;
 }

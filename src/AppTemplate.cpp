@@ -1,4 +1,5 @@
 #include "application/Application.h"
+#include "application/Logger.h"
 
 class AppTemplate : public Application
 {
@@ -22,7 +23,7 @@ AppTemplate::AppTemplate(int argc, char *argv[])
 using po = boost::program_options::option_description;
 int AppTemplate::main()
 {
-    std::cout << "AppTemplate\n"; 
+    LOG_INF_TRIV << "AppTemplate"; 
     return 0;
 }
 

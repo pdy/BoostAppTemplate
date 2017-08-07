@@ -48,7 +48,7 @@ private:
 
     void processArguments(int argc, char *argv[]);
     bool helpRequested() const;
-    void configureLogging();	
+    bool configureLogging();	
 	
     std::unique_ptr<boost::program_options::variables_map> _cmdArguments;
     std::unique_ptr<boost::program_options::options_description> _cmdDesc;
