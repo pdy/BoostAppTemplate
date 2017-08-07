@@ -66,6 +66,12 @@ int Application::run()
 {
     try
     {
+        if(!init())
+        {
+            LOG_ERR_TRIV << "Initialization failed";
+            return -1;
+        }
+
         processArguments(_argc, _argv);
 
         if(helpRequested())
@@ -74,19 +80,13 @@ int Application::run()
             return 0;
         }
 
-        options::notify(*_cmdArguments);
-
-        if(!init())
-        {
-            LOG_ERR_TRIV << "initialization failed";
-            return -1;
-        }
+        options::notify(*_cmdArguments); 
     }
     catch(const options::error &e)
     {
         LOG_ERR_TRIV << "ERROR: " << e.what();
         return -1;
-	}
+    }
     catch(const std::exception &e)
     {
         LOG_ERR_TRIV << "Exception, thrown [" << e.what() << "]";
