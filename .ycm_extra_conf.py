@@ -4,12 +4,13 @@ import subprocess
 import ycm_core
 
 myFlags = [
-    '-Wall',
+    '-Weverything',
+    '-Wno-c++98-compat',
     '-std=c++14',
     '-stdlib=libstdc++',
     '-x','c++',
     '-I','.' ,
-    '-I','./3rd/boost/include/'
+    '-isystem','./3rd/boost/include/'
 ]
 
 scriptPath = os.path.dirname(os.path.abspath(__file__));
