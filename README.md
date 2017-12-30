@@ -13,8 +13,8 @@ If you'll use my script, app is easy to prepare
 $ wget https://raw.githubusercontent.com/severalgh/scripts/master/utils/new_app.sh
 $ sh new_app.sh StartApp
 $ cd StartApp
-$ rm -r .git
 $ ./setboostpath <boost_path>
 $ make
 ````
+Then enter 'build' directory to access binaries.
 
