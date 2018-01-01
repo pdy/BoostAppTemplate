@@ -1,5 +1,4 @@
-Utility that serves me as starting point whenever I need to write some code from scratch.
-Use Boost C++, good for prove of concept code or to create small tool.
+Utility that serves me as starting point whenever I need to write small tool or when learning new library or technique.
 
 # Build
 
