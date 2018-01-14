@@ -6,10 +6,13 @@ import ycm_core
 myFlags = [
     '-Weverything',
     '-Wno-c++98-compat',
+    '-Wno-c++98-compat-pedantic',
     '-std=c++14',
     '-stdlib=libstdc++',
     '-x','c++',
     '-I','.' ,
+    '-I','./src' ,
+    '-I','./src/application' ,
     '-isystem','./3rd/boost/include/'
 ]
 

@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <type_traits>
 
 #include <boost/program_options.hpp>
 
@@ -57,7 +58,11 @@ private:
 
 namespace MainApplication{
 
-    template<class AppClass>
+    template
+    <
+        typename AppClass,
+        typename = typename std::enable_if<std::is_base_of<Application, AppClass>::value>::type
+    >
     int run(int argc, char *argv[])
     {
         std::unique_ptr<AppClass> app(new AppClass(argc, argv));

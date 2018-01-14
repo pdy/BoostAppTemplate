@@ -64,7 +64,7 @@ int Application::run()
     {
         if(!init())
         {
-            LOG_ERR_TRIV << "Initialization failed";
+            LOG_ERR << "Initialization failed";
             return -1;
         }
 
@@ -80,17 +80,17 @@ int Application::run()
     }
     catch(const options::error &e)
     {
-        LOG_ERR_TRIV << "ERROR: " << e.what();
+        LOG_ERR << "ERROR: " << e.what();
         return -1;
     }
     catch(const std::exception &e)
     {
-        LOG_ERR_TRIV << "Exception, thrown [" << e.what() << "]";
+        LOG_ERR << "Exception, thrown [" << e.what() << "]";
         return -1;
     }
     catch(...)
     {
-        LOG_ERR_TRIV << "Unknown exception thrown";
+        LOG_ERR << "Unknown exception thrown";
         return -1;
     }
 	
@@ -155,7 +155,7 @@ bool Application::addCmdOption(const std::string &option, const std::string &des
     }
     else
     {
-        LOG_WRN_TRIV << "Option " << option << " is already taken";
+        LOG_WRN << "Option " << option << " is already taken";
     }
 
     return unique;
@@ -178,7 +178,7 @@ bool Application::addCmdOptionFlag(const std::string &option, const std::string 
     }
     else
     {
-        LOG_WRN_TRIV << "Option " << option << " is already taken";
+        LOG_WRN << "Option " << option << " is already taken";
     }
 
     return unique;
@@ -196,6 +196,6 @@ std::string Application::getCmdOptionValue(const std::string &option) const
 
 int Application::main()
 {
-    LOG_INF_TRIV << "main(): I should be reimplemented dummy";
+    LOG_INF << "main(): I should be reimplemented dummy";
     return 0;
 }

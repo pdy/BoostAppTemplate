@@ -14,7 +14,7 @@ protected:
 
 AppTemplate::AppTemplate(int argc, char *argv[])
     : Application(argc, argv, "AppTemplate")
-{
+{ 
     Application::showHelpIfNoArguments(); 
     Application::addCmdOption("option,o", "example of cmd option");
     Application::addCmdOptionFlag("flag,f", "example of cmd flag");
@@ -22,7 +22,7 @@ AppTemplate::AppTemplate(int argc, char *argv[])
 
 int AppTemplate::main()
 {
-    LOG_INF_TRIV << "AppTemplate"; 
+    LOG_INF << "AppTemplate"; 
     return 0;
 }
 
