@@ -65,7 +65,7 @@ namespace MainApplication{
     >
     int run(int argc, char *argv[])
     {
-        std::unique_ptr<AppClass> app(new AppClass(argc, argv));
+        auto app = std::make_unique<AppClass>(argc, argv);
         return app->run();	
     }
 
