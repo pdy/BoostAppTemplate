@@ -38,22 +38,22 @@ protected:
  
     inline void showHelpIfNoArguments()
     {
-        _showHelpIfNoArguments = true;
+        m_showHelpIfNoArguments = true;
     }
 	
 private:		
-    const int _argc;
-    char **_argv;
+    const int m_argc;
+    char **m_argv;
 
     void processArguments(int argc, char *argv[]);
     bool helpRequested() const;
     bool configureLogging();	
 	
-    std::unique_ptr<boost::program_options::variables_map> _cmdArguments;
-    std::unique_ptr<boost::program_options::options_description> _cmdDesc;
-    std::string _appName;
+    std::unique_ptr<boost::program_options::variables_map> m_cmdArguments;
+    std::unique_ptr<boost::program_options::options_description> m_cmdDesc;
+    std::string m_appName;
 
-    bool _showHelpIfNoArguments = false;
+    bool m_showHelpIfNoArguments = false;
 };
 
 namespace MainApplication{

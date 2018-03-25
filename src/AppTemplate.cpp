@@ -5,7 +5,6 @@ class AppTemplate : public Application
 {
 public:
     AppTemplate(int argc, char *argv[]);
-    ~AppTemplate() override = default;
 
 protected:
     int main() override;
