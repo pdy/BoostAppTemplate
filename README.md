@@ -9,8 +9,8 @@ Makefiles are linux only. Tools you need:
 If you'll use my script, app is easy to prepare
 
 ````
-$ wget https://raw.githubusercontent.com/severalgh/scripts/master/utils/new_app.sh
-$ sh new_app.sh StartApp
+$ wget https://raw.githubusercontent.com/severalgh/scripts/master/utils/napp.sh
+$ sh napp.sh StartApp
 $ cd StartApp
 $ ./setboostpath <boost_path>
 $ make
