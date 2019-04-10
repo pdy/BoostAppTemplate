@@ -1,5 +1,5 @@
-#ifndef SEVERALGH_APPLICATION_H_
-#define SEVERALGH_APPLICATION_H_
+#ifndef PDY_APPLICATION_H_
+#define PDY_APPLICATION_H_
 
 #include <string>
 #include <vector>
@@ -75,4 +75,4 @@ namespace MainApplication{
 
 } // namespace MainApplication
 
-#endif //SEVERALGH_APPLICATION_H_
+#endif //PDY_APPLICATION_H_

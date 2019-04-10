@@ -1,5 +1,5 @@
-#ifndef SEVERALGH_LOGGER_H_
-#define SEVERALGH_LOGGER_H_
+#ifndef PDY_LOGGER_H_
+#define PDY_LOGGER_H_
 
 #include <boost/log/trivial.hpp>
 
