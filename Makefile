@@ -4,7 +4,7 @@ CXX := clang++
 STRIP := strip
 
 # -frtti is required by boost, which is linked staticly
-MANUAL_FLAGS := -std=c++14 -frtti -fexceptions -Wno-deprecated-register
+MANUAL_FLAGS := -std=c++17 -frtti -fexceptions -Wno-deprecated-register
 FLAGS := $(MANUAL_FLAGS)
 
 LD_FLAGS := -L./3rd/boost/lib
