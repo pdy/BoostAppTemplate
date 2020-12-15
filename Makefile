@@ -32,7 +32,7 @@ OBJ := $(BUILD)/obj
 
 DESTBIN := $(BUILD)/bin
 
-all: dist $(DESTBIN)/AppTemplate strip
+all: dist $(DESTBIN)/BoostAppTemplate strip
 debug: all
 
 dist:
@@ -44,9 +44,9 @@ clean:
 strip:
 	$(STRIP) $(DESTBIN)/*
 
-OBJS := $(OBJ)/AppTemplate.o $(OBJ)/Application.o
+OBJS := $(OBJ)/BoostAppTemplate.o $(OBJ)/Application.o
 
-$(DESTBIN)/AppTemplate: $(OBJS)
+$(DESTBIN)/BoostAppTemplate: $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LD_FLAGS) $(LD_LIBS)
 
 $(OBJ)/%.o: ./src/%.cpp

@@ -1,32 +1,32 @@
 #include "application/Application.h"
 #include "application/TrivialLogger.h"
 
-class AppTemplate : public Application
+class BoostAppTemplate : public Application
 {
 public:
-  AppTemplate(int argc, char *argv[]);
+  BoostAppTemplate(int argc, char *argv[]);
 
 protected:
   int main() override;
 };
 
 
-AppTemplate::AppTemplate(int argc, char *argv[]):
-  Application(argc, argv, "AppTemplate")
+BoostAppTemplate::BoostAppTemplate(int argc, char *argv[]):
+  Application(argc, argv, "BoostAppTemplate")
 { 
   //Application::showHelpIfNoArguments(); 
   //Application::addCmdOption("option,o", "example of cmd option");
   //Application::addCmdOptionFlag("flag,f", "example of cmd flag");
 }
 
-int AppTemplate::main()
+int BoostAppTemplate::main()
 {
-  LOG_INF << "AppTemplate"; 
+  LOG_INF << "BoostAppTemplate"; 
   return 0;
 }
 
 
 int main(int argc, char *argv[])
 {
-  return MainApplication::run<AppTemplate>(argc, argv);
+  return MainApplication::run<BoostAppTemplate>(argc, argv);
 }
